@@ -42,7 +42,7 @@ const Matakuliah = () => {
     navigate("/auth/login");
   };
 
-  if (loading) return <div className="loading">Loading...</div>;
+  if (loading) return <main className="loading"><h1>Memuat...</h1></main>;
 
   return (
     <div className="app-container">

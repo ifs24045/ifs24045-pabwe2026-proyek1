@@ -28,7 +28,7 @@ const Register = () => {
   };
 
   return (
-    <div className="auth-container">
+    <main className="auth-container">
       <div className="auth-box">
         <h1>NilaiKu</h1>
         <h2>Daftar</h2>
@@ -76,7 +76,7 @@ const Register = () => {
         </form>
         <p>Sudah punya akun? <Link to="/auth/login">Login</Link></p>
       </div>
-    </div>
+    </main>
   );
 };
 

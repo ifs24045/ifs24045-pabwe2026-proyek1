@@ -28,7 +28,7 @@ const Login = () => {
   };
 
   return (
-    <div className="auth-container">
+    <main className="auth-container">
       <div className="auth-box">
         <h1>NilaiKu</h1>
         <h2>Login</h2>
@@ -62,7 +62,7 @@ const Login = () => {
         </form>
         <p>Belum punya akun? <Link to="/auth/register">Daftar</Link></p>
       </div>
-    </div>
+    </main>
   );
 };
 
