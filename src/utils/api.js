@@ -13,9 +13,4 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-api.interceptors.request.use((config) => {
-  config.headers["X-Request-ID"] = Math.random().toString(36).slice(2);
-  return config;
-});
-
 export default api;
