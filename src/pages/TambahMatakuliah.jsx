@@ -1,39 +1,11 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AppLayout from "../components/AppLayout";
 import MatakuliahForm from "../components/MatakuliahForm";
-import api from "../utils/api";
+import useMatakuliahForm from "../utils/useMatakuliahForm";
 
 const TambahMatakuliah = () => {
-  const navigate = useNavigate();
-  const [form, setForm] = useState({
-    nama: "",
-    kode: "",
-    sks: "",
-    nilai: "",
-    semester: "",
-  });
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-
-    try {
-      await api.post("/api/matakuliah", form);
-      navigate("/matakuliah");
-    } catch (err) {
-      setError(err.response?.data?.message || "Gagal menambahkan mata kuliah");
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { form, error, loading, handleChange, handleSubmit } =
+    useMatakuliahForm({ mode: "add" });
 
   return (
     <AppLayout>
