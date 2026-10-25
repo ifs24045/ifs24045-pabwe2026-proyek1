@@ -40,6 +40,7 @@ const Login = () => {
               id="username"
               type="text"
               value={username}
+              autoComplete="username"
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Masukkan username"
               required
@@ -51,6 +52,7 @@ const Login = () => {
               id="password"
               type="password"
               value={password}
+              autoComplete="current-password"
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Masukkan password"
               required

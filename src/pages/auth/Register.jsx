@@ -40,6 +40,7 @@ const Register = () => {
               id="nama"
               type="text"
               name="nama"
+              autoComplete="name"
               value={form.nama}
               onChange={handleChange}
               placeholder="Masukkan nama lengkap"
@@ -52,6 +53,7 @@ const Register = () => {
               id="username"
               type="text"
               name="username"
+              autoComplete="username"
               value={form.username}
               onChange={handleChange}
               placeholder="Masukkan username"
@@ -64,6 +66,7 @@ const Register = () => {
               id="password"
               type="password"
               name="password"
+              autoComplete="new-password"
               value={form.password}
               onChange={handleChange}
               placeholder="Masukkan password"

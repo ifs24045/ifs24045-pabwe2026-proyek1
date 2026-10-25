@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import AppLayout from "../components/AppLayout";
 import api from "../utils/api";
 
 const Profil = () => {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
+  const { user } = useAuth();
   const [form, setForm] = useState({ nama: "", password: "" });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -46,65 +45,66 @@ const Profil = () => {
     }
   };
 
-  const handleLogout = () => {
-    logout();
-    navigate("/auth/login");
-  };
-
-  if (loading) return <main className="loading"><h1>Memuat...</h1></main>;
+  if (loading) {
+    return (
+      <main className="loading">
+        <h1>Memuat...</h1>
+      </main>
+    );
+  }
 
   return (
-    <div className="app-container">
-      <nav className="app-nav">
-        <h1>NilaiKu</h1>
-        <div className="nav-links">
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/matakuliah">Mata Kuliah</Link>
-          <Link to="/profil">Profil</Link>
-          <button onClick={handleLogout}>Logout</button>
+    <AppLayout>
+      <h2>Profil Saya</h2>
+
+      <div className="profil-info">
+        <p>
+          <strong>Username:</strong> {user?.username}
+        </p>
+      </div>
+
+      {error && (
+        <p className="error" role="alert">
+          {error}
+        </p>
+      )}
+      {success && (
+        <p className="success" role="status">
+          {success}
+        </p>
+      )}
+
+      <form onSubmit={handleSubmit} className="form-container">
+        <div className="form-group">
+          <label htmlFor="nama">Nama Lengkap</label>
+          <input
+            id="nama"
+            type="text"
+            name="nama"
+            value={form.nama}
+            onChange={handleChange}
+            placeholder="Masukkan nama lengkap"
+            autoComplete="name"
+            required
+          />
         </div>
-      </nav>
-
-      <main className="app-main">
-        <h2>Profil Saya</h2>
-
-        <div className="profil-info">
-          <p><strong>Username:</strong> {user?.username}</p>
+        <div className="form-group">
+          <label htmlFor="password">Password Baru (Opsional)</label>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+            placeholder="Kosongkan jika tidak ingin mengubah"
+            autoComplete="new-password"
+          />
         </div>
-
-        {error && <p className="error">{error}</p>}
-        {success && <p className="success">{success}</p>}
-
-        <form onSubmit={handleSubmit} className="form-container">
-          <div className="form-group">
-            <label htmlFor="nama">Nama Lengkap</label>
-            <input
-              id="nama"
-              type="text"
-              name="nama"
-              value={form.nama}
-              onChange={handleChange}
-              placeholder="Masukkan nama lengkap"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password Baru (Opsional)</label>
-            <input
-              id="password"
-              type="password"
-              name="password"
-              value={form.password}
-              onChange={handleChange}
-              placeholder="Kosongkan jika tidak ingin mengubah"
-            />
-          </div>
-          <button type="submit" className="btn-primary" disabled={loading}>
-            {loading ? "Menyimpan..." : "Update Profil"}
-          </button>
-        </form>
-      </main>
-    </div>
+        <button type="submit" className="btn-primary" disabled={loading}>
+          {loading ? "Menyimpan..." : "Update Profil"}
+        </button>
+      </form>
+    </AppLayout>
   );
 };
 

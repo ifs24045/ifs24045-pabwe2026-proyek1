@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Landing = () => {
   return (
     <div className="landing-container">
-      <nav className="landing-nav">
+      <nav className="landing-nav" aria-label="Navigasi utama">
         <h1>NilaiKu</h1>
         <div>
           <Link to="/auth/login">Login</Link>
@@ -36,6 +36,24 @@ const Landing = () => {
             <h3>📈 Pantau Progress</h3>
             <p>Lihat perkembangan akademik kamu dari semester ke semester</p>
           </div>
+        </section>
+
+        <section className="landing-steps" aria-labelledby="judul-langkah">
+          <h2 id="judul-langkah">Cara Kerjanya</h2>
+          <ol>
+            <li>
+              <strong>Daftar</strong>
+              <span>Buat akun gratis dalam hitungan detik.</span>
+            </li>
+            <li>
+              <strong>Isi nilai</strong>
+              <span>Tambahkan mata kuliah beserta SKS dan nilainya.</span>
+            </li>
+            <li>
+              <strong>Pantau IPK</strong>
+              <span>Lihat IPK dan total SKS langsung di dashboard.</span>
+            </li>
+          </ol>
         </section>
       </main>
 

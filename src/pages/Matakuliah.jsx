@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
+import AppLayout from "../components/AppLayout";
+import NilaiBadge from "../components/NilaiBadge";
+import { DAFTAR_SEMESTER } from "../constants";
 import api from "../utils/api";
 
 const Matakuliah = () => {
-  const { logout } = useAuth();
-  const navigate = useNavigate();
   const [matakuliah, setMatakuliah] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filterSemester, setFilterSemester] = useState("");
@@ -37,52 +37,48 @@ const Matakuliah = () => {
     }
   };
 
-  const handleLogout = () => {
-    logout();
-    navigate("/auth/login");
-  };
-
-  if (loading) return <main className="loading"><h1>Memuat...</h1></main>;
+  if (loading) {
+    return (
+      <main className="loading">
+        <h1>Memuat...</h1>
+      </main>
+    );
+  }
 
   return (
-    <div className="app-container">
-      <nav className="app-nav">
-        <h1>NilaiKu</h1>
-        <div className="nav-links">
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/matakuliah">Mata Kuliah</Link>
-          <Link to="/profil">Profil</Link>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
-      </nav>
+    <AppLayout>
+      <div className="section-header">
+        <h2>Mata Kuliah</h2>
+        <Link to="/matakuliah/tambah" className="btn-primary">
+          + Tambah
+        </Link>
+      </div>
 
-      <main className="app-main">
-        <div className="section-header">
-          <h2>Mata Kuliah</h2>
-          <Link to="/matakuliah/tambah" className="btn-primary">
-            + Tambah
-          </Link>
-        </div>
+      <div className="filter-container">
+        <label htmlFor="semester">Filter Semester:</label>
+        <select
+          id="semester"
+          value={filterSemester}
+          onChange={(e) => setFilterSemester(e.target.value)}
+        >
+          <option value="">Semua Semester</option>
+          {DAFTAR_SEMESTER.map((s) => (
+            <option key={s} value={s}>
+              Semester {s}
+            </option>
+          ))}
+        </select>
+      </div>
 
-        <div className="filter-container">
-          <label htmlFor="semester">Filter Semester:</label>
-          <select
-            id="semester"
-            value={filterSemester}
-            onChange={(e) => setFilterSemester(e.target.value)}
-          >
-            <option value="">Semua Semester</option>
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((s) => (
-              <option key={s} value={s}>
-                Semester {s}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {matakuliah.length === 0 ? (
-          <p className="empty-state">Belum ada mata kuliah.</p>
-        ) : (
+      {matakuliah.length === 0 ? (
+        <p className="empty-state">Belum ada mata kuliah.</p>
+      ) : (
+        <div
+          className="table-wrap"
+          role="region"
+          aria-label="Daftar mata kuliah"
+          tabIndex={0}
+        >
           <table className="mk-table">
             <thead>
               <tr>
@@ -100,7 +96,9 @@ const Matakuliah = () => {
                   <td>{mk.nama}</td>
                   <td>{mk.kode}</td>
                   <td>{mk.sks}</td>
-                  <td>{mk.nilai || "-"}</td>
+                  <td>
+                    <NilaiBadge nilai={mk.nilai} />
+                  </td>
                   <td>{mk.semester}</td>
                   <td>
                     <Link to={`/matakuliah/edit/${mk.id}`} className="btn-edit">
@@ -117,9 +115,9 @@ const Matakuliah = () => {
               ))}
             </tbody>
           </table>
-        )}
-      </main>
-    </div>
+        </div>
+      )}
+    </AppLayout>
   );
 };
 
