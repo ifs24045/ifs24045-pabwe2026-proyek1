@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import AuthLayout from "../../components/AuthLayout";
 import api from "../../utils/api";
 
 const Register = () => {
@@ -28,58 +29,55 @@ const Register = () => {
   };
 
   return (
-    <main className="auth-container">
-      <div className="auth-box">
-        <h1>NilaiKu</h1>
-        <h2>Daftar</h2>
-        {error && <p className="error">{error}</p>}
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="nama">Nama Lengkap</label>
-            <input
-              id="nama"
-              type="text"
-              name="nama"
-              autoComplete="name"
-              value={form.nama}
-              onChange={handleChange}
-              placeholder="Masukkan nama lengkap"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
-              id="username"
-              type="text"
-              name="username"
-              autoComplete="username"
-              value={form.username}
-              onChange={handleChange}
-              placeholder="Masukkan username"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              type="password"
-              name="password"
-              autoComplete="new-password"
-              value={form.password}
-              onChange={handleChange}
-              placeholder="Masukkan password"
-              required
-            />
-          </div>
-          <button id="btn-submit" type="submit" disabled={loading}>
-            {loading ? "Loading..." : "Daftar"}
-          </button>
-        </form>
-        <p>Sudah punya akun? <Link to="/auth/login">Login</Link></p>
+    <AuthLayout
+      title="Daftar"
+      error={error}
+      onSubmit={handleSubmit}
+      buttonLabel={loading ? "Loading..." : "Daftar"}
+      footerText="Sudah punya akun?"
+      footerLinkTo="/auth/login"
+      footerLinkLabel="Login"
+    >
+      <div className="form-group">
+        <label htmlFor="nama">Nama Lengkap</label>
+        <input
+          id="nama"
+          type="text"
+          name="nama"
+          autoComplete="name"
+          value={form.nama}
+          onChange={handleChange}
+          placeholder="Masukkan nama lengkap"
+          required
+        />
       </div>
-    </main>
+      <div className="form-group">
+        <label htmlFor="username">Username</label>
+        <input
+          id="username"
+          type="text"
+          name="username"
+          autoComplete="username"
+          value={form.username}
+          onChange={handleChange}
+          placeholder="Masukkan username"
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          autoComplete="new-password"
+          value={form.password}
+          onChange={handleChange}
+          placeholder="Masukkan password"
+          required
+        />
+      </div>
+    </AuthLayout>
   );
 };
 

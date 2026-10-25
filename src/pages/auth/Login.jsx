@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import AuthLayout from "../../components/AuthLayout";
 import api from "../../utils/api";
 
 const Login = () => {
@@ -28,43 +29,40 @@ const Login = () => {
   };
 
   return (
-    <main className="auth-container">
-      <div className="auth-box">
-        <h1>NilaiKu</h1>
-        <h2>Login</h2>
-        {error && <p className="error">{error}</p>}
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
-              id="username"
-              type="text"
-              value={username}
-              autoComplete="username"
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Masukkan username"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              autoComplete="current-password"
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Masukkan password"
-              required
-            />
-          </div>
-          <button id="btn-submit" type="submit" disabled={loading}>
-            {loading ? "Loading..." : "Login"}
-          </button>
-        </form>
-        <p>Belum punya akun? <Link to="/auth/register">Daftar</Link></p>
+    <AuthLayout
+      title="Login"
+      error={error}
+      onSubmit={handleSubmit}
+      buttonLabel={loading ? "Loading..." : "Login"}
+      footerText="Belum punya akun?"
+      footerLinkTo="/auth/register"
+      footerLinkLabel="Daftar"
+    >
+      <div className="form-group">
+        <label htmlFor="username">Username</label>
+        <input
+          id="username"
+          type="text"
+          value={username}
+          autoComplete="username"
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Masukkan username"
+          required
+        />
       </div>
-    </main>
+      <div className="form-group">
+        <label htmlFor="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          value={password}
+          autoComplete="current-password"
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Masukkan password"
+          required
+        />
+      </div>
+    </AuthLayout>
   );
 };
 
