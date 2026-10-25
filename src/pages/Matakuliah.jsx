@@ -63,9 +63,7 @@ const Matakuliah = () => {
         >
           <option value="">Semua Semester</option>
           {DAFTAR_SEMESTER.map((s) => (
-            <option key={s} value={s}>
-              Semester {s}
-            </option>
+            <option key={s} value={s}>Semester {s}</option>
           ))}
         </select>
       </div>
@@ -73,12 +71,7 @@ const Matakuliah = () => {
       {matakuliah.length === 0 ? (
         <p className="empty-state">Belum ada mata kuliah.</p>
       ) : (
-        <div
-          className="table-wrap"
-          role="region"
-          aria-label="Daftar mata kuliah"
-          tabIndex={0}
-        >
+        <section className="table-wrap" aria-label="Daftar mata kuliah">
           <table className="mk-table">
             <thead>
               <tr>
@@ -96,18 +89,13 @@ const Matakuliah = () => {
                   <td>{mk.nama}</td>
                   <td>{mk.kode}</td>
                   <td>{mk.sks}</td>
-                  <td>
-                    <NilaiBadge nilai={mk.nilai} />
-                  </td>
+                  <td><NilaiBadge nilai={mk.nilai} /></td>
                   <td>{mk.semester}</td>
                   <td>
                     <Link to={`/matakuliah/edit/${mk.id}`} className="btn-edit">
                       Edit
                     </Link>
-                    <button
-                      onClick={() => handleDelete(mk.id)}
-                      className="btn-delete"
-                    >
+                    <button onClick={() => handleDelete(mk.id)} className="btn-delete">
                       Hapus
                     </button>
                   </td>
@@ -115,7 +103,7 @@ const Matakuliah = () => {
               ))}
             </tbody>
           </table>
-        </div>
+        </section>
       )}
     </AppLayout>
   );

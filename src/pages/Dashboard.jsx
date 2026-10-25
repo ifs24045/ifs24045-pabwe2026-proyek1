@@ -74,10 +74,7 @@ const Dashboard = () => {
         {matakuliah.length === 0 ? (
           <p className="empty-state">Belum ada mata kuliah. Tambahkan sekarang!</p>
         ) : (
-          <section
-            className="table-wrap"
-            aria-label="Mata kuliah terbaru"
-          >
+          <section className="table-wrap" aria-label="Mata kuliah terbaru">
             <table className="mk-table">
               <thead>
                 <tr>
@@ -94,9 +91,7 @@ const Dashboard = () => {
                     <td>{mk.nama}</td>
                     <td>{mk.kode}</td>
                     <td>{mk.sks}</td>
-                    <td>
-                      <NilaiBadge nilai={mk.nilai} />
-                    </td>
+                    <td><NilaiBadge nilai={mk.nilai} /></td>
                     <td>{mk.semester}</td>
                   </tr>
                 ))}

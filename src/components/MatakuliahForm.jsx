@@ -18,7 +18,6 @@ const MatakuliahForm = ({ form, onChange, onSubmit, loading, labelSubmit }) => {
           placeholder="Contoh: Pemrograman Web"
         />
       </div>
-
       <div className="form-group">
         <label htmlFor="kode">Kode Mata Kuliah</label>
         <input
@@ -31,7 +30,6 @@ const MatakuliahForm = ({ form, onChange, onSubmit, loading, labelSubmit }) => {
           placeholder="Contoh: IF301"
         />
       </div>
-
       <div className="form-group">
         <label htmlFor="sks">SKS</label>
         <input
@@ -45,7 +43,6 @@ const MatakuliahForm = ({ form, onChange, onSubmit, loading, labelSubmit }) => {
           max={6}
         />
       </div>
-
       <div className="form-group">
         <label htmlFor="nilai">Nilai (Opsional)</label>
         <select id="nilai" name="nilai" value={form.nilai} onChange={onChange}>
@@ -55,23 +52,15 @@ const MatakuliahForm = ({ form, onChange, onSubmit, loading, labelSubmit }) => {
           ))}
         </select>
       </div>
-
       <div className="form-group">
         <label htmlFor="semester">Semester</label>
-        <select
-          id="semester"
-          name="semester"
-          value={form.semester}
-          onChange={onChange}
-          required
-        >
+        <select id="semester" name="semester" value={form.semester} onChange={onChange} required>
           <option value="">-- Pilih Semester --</option>
           {DAFTAR_SEMESTER.map((s) => (
             <option key={s} value={String(s)}>Semester {s}</option>
           ))}
         </select>
       </div>
-
       <button type="submit" className="btn-primary" disabled={loading}>
         {loading ? "Menyimpan..." : labelSubmit}
       </button>

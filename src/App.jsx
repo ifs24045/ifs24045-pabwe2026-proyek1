@@ -32,62 +32,13 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
-      <Route
-        path="/auth/login"
-        element={
-          <PublicRoute>
-            <Login />
-          </PublicRoute>
-        }
-      />
-      <Route
-        path="/auth/register"
-        element={
-          <PublicRoute>
-            <Register />
-          </PublicRoute>
-        }
-      />
-      <Route
-        path="/dashboard"
-        element={
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/matakuliah"
-        element={
-          <PrivateRoute>
-            <Matakuliah />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/matakuliah/tambah"
-        element={
-          <PrivateRoute>
-            <TambahMatakuliah />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/matakuliah/edit/:id"
-        element={
-          <PrivateRoute>
-            <EditMatakuliah />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/profil"
-        element={
-          <PrivateRoute>
-            <Profil />
-          </PrivateRoute>
-        }
-      />
+      <Route path="/auth/login" element={<PublicRoute><Login /></PublicRoute>} />
+      <Route path="/auth/register" element={<PublicRoute><Register /></PublicRoute>} />
+      <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+      <Route path="/matakuliah" element={<PrivateRoute><Matakuliah /></PrivateRoute>} />
+      <Route path="/matakuliah/tambah" element={<PrivateRoute><TambahMatakuliah /></PrivateRoute>} />
+      <Route path="/matakuliah/edit/:id" element={<PrivateRoute><EditMatakuliah /></PrivateRoute>} />
+      <Route path="/profil" element={<PrivateRoute><Profil /></PrivateRoute>} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
