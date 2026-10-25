@@ -24,7 +24,7 @@ const EditMatakuliah = () => {
   const fetchMatakuliah = async () => {
     try {
       const res = await api.get("/api/matakuliah");
-      const mk = res.data.data.find((m) => m.id === parseInt(id));
+      const mk = res.data.data.find((m) => m.id === Number.parseInt(id));
       if (mk) {
         setForm({
           nama: mk.nama,

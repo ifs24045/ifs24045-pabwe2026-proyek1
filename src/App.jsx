@@ -1,10 +1,11 @@
+import PropTypes from "prop-types";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import Landing from "./pages/Landing";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Dashboard from "./pages/Dashboard";
-import Matakuliah from './pages/Matakuliah'
+import Matakuliah from "./pages/Matakuliah";
 import TambahMatakuliah from "./pages/TambahMatakuliah";
 import EditMatakuliah from "./pages/EditMatakuliah";
 import Profil from "./pages/Profil";
@@ -14,9 +15,17 @@ const PrivateRoute = ({ children }) => {
   return token ? children : <Navigate to="/auth/login" />;
 };
 
+PrivateRoute.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
 const PublicRoute = ({ children }) => {
   const { token } = useAuth();
-  return !token ? children : <Navigate to="/dashboard" />;
+  return token ? <Navigate to="/dashboard" /> : children;
+};
+
+PublicRoute.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 const AppRoutes = () => {

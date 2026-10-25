@@ -74,11 +74,9 @@ const Dashboard = () => {
         {matakuliah.length === 0 ? (
           <p className="empty-state">Belum ada mata kuliah. Tambahkan sekarang!</p>
         ) : (
-          <div
+          <section
             className="table-wrap"
-            role="region"
             aria-label="Mata kuliah terbaru"
-            tabIndex={0}
           >
             <table className="mk-table">
               <thead>
@@ -104,7 +102,7 @@ const Dashboard = () => {
                 ))}
               </tbody>
             </table>
-          </div>
+          </section>
         )}
       </div>
     </AppLayout>
