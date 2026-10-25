@@ -69,9 +69,9 @@ const Profil = () => {
         </p>
       )}
       {success && (
-        <p className="success" role="status">
+        <output className="success">
           {success}
-        </p>
+        </output>
       )}
 
       <form onSubmit={handleSubmit} className="form-container">
