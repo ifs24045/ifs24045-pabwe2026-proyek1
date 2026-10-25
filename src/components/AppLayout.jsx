@@ -7,7 +7,7 @@ const AppLayout = ({ children }) => {
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate("/auth/login");
   };
 
   return (

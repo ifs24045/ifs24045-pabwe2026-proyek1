@@ -19,7 +19,7 @@ const MatakuliahForm = ({ form, onChange, onSubmit, loading, labelSubmit }) => {
       </div>
 
       <div className="form-group">
-        <label htmlFor="kode">Kode</label>
+        <label htmlFor="kode">Kode Mata Kuliah</label>
         <input
           id="kode"
           name="kode"
@@ -27,7 +27,7 @@ const MatakuliahForm = ({ form, onChange, onSubmit, loading, labelSubmit }) => {
           value={form.kode}
           onChange={onChange}
           required
-          placeholder="Contoh: 11S3132"
+          placeholder="Contoh: IF301"
         />
       </div>
 
@@ -46,7 +46,7 @@ const MatakuliahForm = ({ form, onChange, onSubmit, loading, labelSubmit }) => {
       </div>
 
       <div className="form-group">
-        <label htmlFor="nilai">Nilai</label>
+        <label htmlFor="nilai">Nilai (Opsional)</label>
         <select id="nilai" name="nilai" value={form.nilai} onChange={onChange}>
           <option value="">-- Belum Ada Nilai --</option>
           {DAFTAR_NILAI.map((n) => (
@@ -68,7 +68,7 @@ const MatakuliahForm = ({ form, onChange, onSubmit, loading, labelSubmit }) => {
         >
           <option value="">-- Pilih Semester --</option>
           {DAFTAR_SEMESTER.map((s) => (
-            <option key={s} value={s}>
+            <option key={s} value={String(s)}>
               Semester {s}
             </option>
           ))}

@@ -101,7 +101,7 @@ const Profil = () => {
           />
         </div>
         <button type="submit" className="btn-primary" disabled={loading}>
-          {loading ? "Menyimpan..." : "Update Profil"}
+           Update Profil
         </button>
       </form>
     </AppLayout>
