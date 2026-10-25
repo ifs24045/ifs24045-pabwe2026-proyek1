@@ -4,7 +4,7 @@ import Landing from "./pages/Landing";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Dashboard from "./pages/Dashboard";
-import Matakuliah from "./pages/Matakuliah";
+import Matakuliah from './pages/Matakuliah'
 import TambahMatakuliah from "./pages/TambahMatakuliah";
 import EditMatakuliah from "./pages/EditMatakuliah";
 import Profil from "./pages/Profil";
